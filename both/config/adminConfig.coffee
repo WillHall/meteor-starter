@@ -1,41 +1,33 @@
 AdminConfig =
 	name: Config.name
-	collections : 
+	collections:
 		Posts: {
+			canedit: true
 			color: 'red'
 			icon: 'pencil'
 			tableColumns: [
-              {label: 'Title',name:'title'}
-              {label:'User',name:'owner',collection:'Users'}
-            ]
+				{title: 'Title', data:'_id', render: AdminDashboard.formatters.getTitleWithLink}
+				{title: 'User', data:'owner', collection:'Users', render: AdminDashboard.formatters.getUserProfileLink}
+				{title: 'Edit', data:'_id', render: AdminDashboard.formatters.edit, sortable: false, width: '5%', class: 'text-center'}
+				{title: 'Delete', data:'_id', render: AdminDashboard.formatters.del, sortable: false, width: '5%', class: 'text-center'}
+			]
 		}
 		Comments: {
 			color: 'green'
 			icon: 'comments'
 			auxCollections: ['Posts']
 			tableColumns: [
-              {label: 'Content';name:'content'}
-              {label:'Post';name:'doc',collection: 'Posts',collection_property:'title'}
-              {label:'User',name:'owner',collection:'Users'}
-            ]
+				{title:'Post', data:'doc', name: 'Posts', collection_property:'title', render: AdminDashboard.formatters.getAuxTitleWithLink}
+				{label:'User', name:'owner', collection:'Users', render: AdminDashboard.formatters.getUserProfileLink}
+				{title: 'View', data:'content', render: AdminDashboard.formatters.openInModal, sortable: false, width: '5%', class: 'text-center'}
+				{title: 'Edit', data:'_id', render: AdminDashboard.formatters.edit, sortable: false, width: '5%', class: 'text-center'}
+				{title: 'Delete', data:'_id', render: AdminDashboard.formatters.del, sortable: false, width: '5%', class: 'text-center'}
+			]
 		}
 	dashboard:
 		homeUrl: '/dashboard'
-		# widgets: [
-		# 	{
-		# 		template: 'adminCollectionWidget'
-		# 		data:
-		# 			collection: 'Posts'
-		# 			class: 'col-lg-3 col-xs-6'
-		# 	}
-		# 	{
-		# 		template: 'adminUserWidget'
-		# 		data:
-		# 			class: 'col-lg-3 col-xs-6'
-		# 	}
-		# ]
-	autoForm: 
-	        omitFields: ['createdAt', 'updatedAt']
+		autoForm:
+			omitFields: ['createdAt', 'updatedAt']
 
 if Meteor.isClient
 	window.AdminConfig = AdminConfig

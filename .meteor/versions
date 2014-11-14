@@ -41,6 +41,7 @@ ddp@1.0.11
 deps@1.0.5
 ejson@1.0.4
 email@1.0.4
+ephemer:reactive-datatables@1.0.0
 fastclick@1.0.1
 follower-livedata@1.0.2
 geojson-utils@1.0.1
@@ -102,7 +103,7 @@ underscore@1.0.1
 url@1.0.2
 webapp-hashing@1.0.1
 webapp@1.1.4
-yogiben:admin@1.0.4
+yogiben:admin@1.0.3
 yogiben:alerts@0.0.2
 yogiben:autoform-file@0.0.3
 yogiben:autoform-modals@0.2.3
